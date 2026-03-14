@@ -36,13 +36,13 @@ const Footer = () => {
                   {s}
                 </a>
               ))} */}
-              {["f", "in", "tw", "yt"].map((s) => (
+              {[{"f": "https://www.facebook.com/share/19ixHBZGQQ/"}, {"in": "https://www.instagram.com/airx_worldwide?igsh=cTR0ZHRrdWlsaGNn"}].map((social) => (
                 <a
-                  key={s}
-                  href="#"
+                  key={Object.keys(social)[0]}
+                  href={Object.values(social)[0]}
                   className="w-8 h-8 rounded-full bg-[#16205a] hover:bg-[#f5a623] flex items-center justify-center text-xs font-bold text-blue-300 hover:text-white transition-all"
                 >
-                  {s}
+                  {Object.keys(social)[0]}
                 </a>
               ))} 
             </div>

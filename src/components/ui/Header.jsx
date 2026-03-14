@@ -1,5 +1,5 @@
 import { useState } from "react";
-import airx from "../../public/airx.png";
+import airx from "../../../public/airx.png"
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
