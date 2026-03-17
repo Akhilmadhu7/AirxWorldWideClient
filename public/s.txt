@@ -1,0 +1,23 @@
+server {
+    listen 80;
+    server_name _;  # Accepts any domain/IP
+    
+    # React app path
+    root /home/ubuntu/airx/frontend/client/AirxWorldWideClient/build;
+    index index.html;
+    
+    # React Router - Serve index.html for ALL routes
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+    
+    # Static assets (images, css, js)
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    # Gzip compression
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript;
+}

@@ -1,23 +1,24 @@
 // src/components/home/HeroSection.jsx
 
 import { useState, useEffect } from "react";
+import pic_1 from "../../public/pic_1.jpeg";
 
 const SLIDES = [
-  {
-    url: "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=1600&auto=format&fit=crop&q=80",
-    headline: "Delivering Trust, Worldwide",
-    subtext: "Fast, secure and reliable international courier services at your doorstep.",
-  },
-  {
+    {
     url: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&auto=format&fit=crop&q=80",
     headline: "Your Package, Our Promise",
     subtext: "Every shipment handled with care — from pickup to final delivery.",
   },
   {
+    url: pic_1,
+    headline: "Delivering Trust, Worldwide",
+    subtext: "Fast, secure and reliable international courier services at your doorstep.",
+  },
+  {
     url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&auto=format&fit=crop&q=80",
     headline: "Global Reach, Local Care",
     subtext: "Connecting businesses and families across borders with speed and safety.",
-  },
+  }
 ];
 
 const HeroSection = () => {
