@@ -15,9 +15,14 @@ const TrackingCard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [trackingData, setTrackingData] = useState(null);
   const [isResultOpen, setIsResultOpen] = useState(false);
-  const [trackingError, setTrackingError] = useState("");
+  const [trackingError, setTrackingError] = useState(null);
 
   const handleTrack = async () => {
+    
+    if (trackingError){
+      setTrackingError(null);
+    }
+
     if (!trackingId.trim()) return;
     setIsLoading(true);
     try {
