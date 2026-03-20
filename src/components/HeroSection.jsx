@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import pic_1 from "../../public/pic_1.jpeg";
+import TrackingModal from "./TrackingCard";
 
 const SLIDES = [
     {
@@ -45,7 +46,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative w-full h-[85vh] min-h-[500px] overflow-hidden">
+    // pb-16 makes room for the overlapping card below
+    <section className="relative w-full h-[85vh] min-h-[500px] overflow-visible pb-16">
 
       {/* Background Image */}
       <div
@@ -55,7 +57,7 @@ const HeroSection = () => {
         style={{ backgroundImage: `url(${SLIDES[current].url})` }}
       />
 
-      {/* Overlay — navy tint for brand consistency */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent" />
 
       {/* Content */}
@@ -65,35 +67,27 @@ const HeroSection = () => {
             isTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"
           }`}
         >
-          {/* Badge */}
           <span className="inline-block mb-4 px-3 py-1 bg-[#f5a623] text-white text-xs font-bold uppercase tracking-widest rounded-full">
             International Courier
           </span>
-
-          {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
             {SLIDES[current].headline}
           </h1>
-
-          {/* Subtext */}
           <p className="text-base sm:text-lg text-blue-100 mb-8 leading-relaxed">
             {SLIDES[current].subtext}
           </p>
 
-          {/* CTA Buttons */}
+          {/* Only Explore Services button */}
           <div className="flex flex-wrap gap-3">
-            <button className="px-6 py-3 bg-[#f5a623] hover:bg-[#e09610] text-white font-semibold rounded-md transition-colors text-sm">
-              Track Your Shipment →
-            </button>
             <button className="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/40 text-white font-semibold rounded-md transition-colors text-sm backdrop-blur-sm">
-              Explore Services
+              Explore Services →
             </button>
           </div>
         </div>
       </div>
 
       {/* Dot Indicators */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {SLIDES.map((_, i) => (
           <button
             key={i}
