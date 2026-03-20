@@ -2,7 +2,6 @@ import { useState } from "react";
 import RadioButton from "../components/ui/RadioButton";
 import { trackShipmentAPI } from "../api/trackingApi";
 import TrackingResult from "./TrackingResult";
-import toast from "react-hot-toast";
 
 const TRACKING_TYPES = [
   { label: "Domestic", value: "domestic" },
@@ -34,10 +33,6 @@ const TrackingCard = () => {
       const errorCode = data?.Response?.ErrorCode ?? null;
       if (errorCode == "1") {
         console.log("errocodeeee", errorCode, typeof errorCode);
-        toast.error(
-          data?.Response?.ErrorDisc ??
-            "Please check tracking Id and try again.",
-        );
         setTrackingError(
           data?.Response?.ErrorDisc ??
             "Please check tracking Id and try again.",
@@ -48,7 +43,6 @@ const TrackingCard = () => {
       }
     } catch (error) {
       console.log("error", error);
-      toast.error(error.message || "Tracking failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
