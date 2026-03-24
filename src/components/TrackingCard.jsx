@@ -4,8 +4,8 @@ import { trackShipmentAPI } from "../api/trackingApi";
 import TrackingResult from "./TrackingResult";
 
 const TRACKING_TYPES = [
-  { label: "Domestic", value: "domestic" },
-  { label: "International", value: "international" },
+  { label: "Domestic", value: "DOMESTIC" },
+  { label: "International", value: "INTERNATIONAL" },
 ];
 
 const TrackingCard = () => {
@@ -25,14 +25,13 @@ const TrackingCard = () => {
     if (!trackingId.trim()) return;
     setIsLoading(true);
     try {
+      
       const data = await trackShipmentAPI({
-        awbNo: trackingId.trim(),
-        type: trackingType,
+        awb_number: trackingId.trim(),
+        courier_type: trackingType,
       });
-      console.log("Tracking data: ", data);
       const errorCode = data?.Response?.ErrorCode ?? null;
       if (errorCode == "1") {
-        console.log("errocodeeee", errorCode, typeof errorCode);
         setTrackingError(
           data?.Response?.ErrorDisc ??
             "Please check tracking Id and try again.",
@@ -42,7 +41,7 @@ const TrackingCard = () => {
         setIsResultOpen(true);
       }
     } catch (error) {
-      console.log("error", error);
+      setTrackingError(error?.message ?? "Something went wrong. Please try again.")
     } finally {
       setIsLoading(false);
     }
