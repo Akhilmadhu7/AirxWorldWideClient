@@ -57,7 +57,7 @@ const TrackingCard = () => {
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           {/* Top accent line */}
-          <div className="h-0.5 bg-gradient-to-r from-[#1e2a6e] to-[#f5a623]" />
+          <div className="h-0.5 bg-linear-to-r from-[#1e2a6e] to-[#f5a623]" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
             {/* Left — Track Your Order */}
