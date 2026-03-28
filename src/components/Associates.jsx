@@ -1,40 +1,48 @@
 import SectionHeader from "./ui/SectionHeader";
 import Cards from "./Cards";
+import pic_1 from "../../public/pic_1.jpeg";
+import trackon_logo from "../../public/trackon_logo.png"
+import fedex_logo from "../../public/fedex_logo.png"
+import dhl_Logo from "../../public/dhl_Logo.png"
+import aramex_logo from "../../public/aramex_logo.png"
+import ups_logo from "../../public/ups_logo.png"
+import valmo_logo from "../../public/valmo_logo.png"
+import dpd_logo from "../../public/dpd_logo.jpg"
 
 const ASSOCIATES = [
   {
     name: "Trackon",
-    logo: "https://www.trackoncouriers.com/images/logo.png",
+    logo: trackon_logo,
     color: "#e63329",
   },
   {
     name: "Valmo",
-    logo: "https://www.valmo.in/assets/images/logo.png",
+    logo: valmo_logo,
     color: "#00b386",
   },
   {
     name: "Aramex",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Aramex_logo.svg/2560px-Aramex_logo.svg.png",
+    logo: aramex_logo,
     color: "#cc0000",
   },
   {
     name: "DHL",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/DHL_Logo.svg/2560px-DHL_Logo.svg.png",
+    logo: dhl_Logo,
     color: "#FFCC00",
   },
   {
     name: "FedEx",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/FedEx_Corporation_-_2016_Logo.svg/2560px-FedEx_Corporation_-_2016_Logo.svg.png",
+    logo: fedex_logo,
     color: "#4d148c",
   },
   {
     name: "UPS",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UPS_Logo_Shield_2017.svg/1200px-UPS_Logo_Shield_2017.svg.png",
+    logo: ups_logo,
     color: "#351c15",
   },
   {
     name: "DPD",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/DPD_logo.svg/2560px-DPD_logo.svg.png",
+    logo: dpd_logo,
     color: "#dc0032",
   },
 ];

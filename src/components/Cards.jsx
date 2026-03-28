@@ -49,32 +49,31 @@ const Cards = ({
 
       {/* Logo — for associate cards */}
       {logo && (
-        <div className="w-full h-20 flex items-center justify-center p-3 rounded-xl bg-gray-50 group-hover:bg-white transition-colors duration-300 mb-4">
-          <img
-            src={logo}
-            alt={logoAlt || title}
-            className="max-h-14 max-w-full object-contain"
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.nextSibling.style.display = "flex";
-            }}
-          />
-          {/* Fallback initial */}
-          <div
-            className="hidden w-14 h-14 rounded-full items-center justify-center text-white text-xl font-extrabold"
-            style={{ backgroundColor: logoFallbackColor, display: "none" }}
-          >
-            {title?.[0]}
-          </div>
-        </div>
-      )}
+  <div className="w-full h-20 flex items-center justify-center p-3 rounded-xl mb-4">
+    <img
+      src={logo}
+      alt={logoAlt || title}
+      className="max-h-14 max-w-full object-contain"
+      onError={(e) => {
+        e.target.style.display = "none";
+        e.target.nextSibling.style.display = "flex";
+      }}
+    />
+    <div
+      className="hidden w-14 h-14 rounded-full items-center justify-center text-white text-xl font-extrabold"
+      style={{ backgroundColor: logoFallbackColor, display: "none" }}
+    >
+      {title?.[0]}
+    </div>
+  </div>
+)}
 
       {/* Icon Circle — for service cards */}
       {icon && (
-        <div className="mb-5 w-14 h-14 rounded-full bg-[#1e2a6e]/8 group-hover:bg-[#f5a623]/10 flex items-center justify-center transition-colors duration-300">
-          <span className="text-2xl">{icon}</span>
-        </div>
-      )}
+  <div className="mb-5 w-14 h-14 rounded-full bg-[#1e2a6e]/5 group-hover:bg-[#f5a623]/10 flex items-center justify-center transition-colors duration-300">
+    <span className="text-2xl">{icon}</span>
+  </div>
+)}
 
       {/* Title */}
       {title && (

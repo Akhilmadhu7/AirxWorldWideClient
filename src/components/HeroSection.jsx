@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import pic_1 from "../../public/pic_1.jpeg";
-import TrackingModal from "./TrackingCard";
 
 const SLIDES = [
     {
