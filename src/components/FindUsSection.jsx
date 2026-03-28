@@ -38,7 +38,7 @@ const FindUsSection = () => {
   const active = LOCATIONS.find((l) => l.id === activeId);
 
   return (
-    <section className="w-full bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         <SectionHeader badge="Find Us" title="Access Us Easily" />

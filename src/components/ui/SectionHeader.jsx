@@ -1,6 +1,6 @@
 const SectionHeader = ({ badge, title, center = true }) => {
   return (
-    <div className={`mb-10 ${center ? "text-center" : "text-left"}`}>
+    <div className={`mb-6 ${center ? "text-center" : "text-left"}`}>
       {badge && (
         <span className="text-xs font-bold uppercase tracking-widest text-[#f5a623]">
           {badge}

@@ -41,8 +41,7 @@ const ASSOCIATES = [
 
 const Associates = () => {
   return (
-    // <section className="w-full bg-gray-50 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
-    <section className="w-full bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         <SectionHeader badge="Our Network" title="Associate With" />
