@@ -47,7 +47,8 @@ const HeroSection = () => {
 
   return (
     // pb-16 makes room for the overlapping card below
-    <section className="relative w-full h-[85vh] min-h-[500px] overflow-visible pb-16">
+    // <section className="relative w-full h-[85vh] min-h-[500px] overflow-visible pb-16">
+    <section className="relative w-full h-[60vh] lg:h-[85vh] min-h-[400px] overflow-visible pb-16">
 
       {/* Background Image */}
       <div
@@ -87,7 +88,8 @@ const HeroSection = () => {
       </div>
 
       {/* Dot Indicators */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+      {/* <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10"> */}
+      <div className="absolute bottom-20 sm:bottom-20 left-1/2 -translate-x-1/2 flex gap-2 z-10">
         {SLIDES.map((_, i) => (
           <button
             key={i}

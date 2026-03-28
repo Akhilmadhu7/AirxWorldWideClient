@@ -61,7 +61,8 @@ const TrackingCard = () => {
 
   return (
     <>
-      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12">
+      {/* <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12"> */}
+      <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-12">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
 
           {/* Top accent line */}

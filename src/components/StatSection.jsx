@@ -2,7 +2,7 @@ import StatCard from "./ui/StatCard";
 
 const STATS = [
   { icon: "🏆", value: "1000+", label: "Shipments Handled in a Day" },
-  { icon: "🗺️", value: "10000+", label: "Happy Customers" },
+  { icon: "🗺️", value: "100000+", label: "Happy Customers" },
   { icon: "🤝", value: "10+",   label: "Aggregator Tieup" },
   { icon: "🌍", value: "220+",  label: "Countries Service Available" },
   { icon: "💼", value: "40+",   label: "Employees" },

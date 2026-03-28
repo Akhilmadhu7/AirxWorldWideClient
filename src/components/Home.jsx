@@ -4,6 +4,7 @@ import Services from "./Services";
 import StatsSection from "./StatSection";
 import PartnerSection from "./ui/PartnerSection";
 import TrackingCard from "./TrackingCard";
+import Associates from "./Associates";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <StatsSection />
       </div>
       <Services/>
+      <Associates/>
       <PartnerSection />
       <FindUsSection />
     </div>
