@@ -8,14 +8,14 @@ import Associates from "./Associates";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-gray-50">
       <HeroSection />
       <TrackingCard />
       <div className="mt-10">
         <StatsSection />
       </div>
-      <Services/>
-      <Associates/>
+      <Services />
+      <Associates />
       <PartnerSection />
       <FindUsSection />
     </div>
