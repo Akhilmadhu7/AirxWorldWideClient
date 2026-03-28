@@ -2,14 +2,14 @@ import { useState } from "react";
 import airx from "../../../public/airx.png"
 
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services", hasDropdown: true },
-  { label: "Associates", href: "/associates" },
-  { label: "Support", href: "/support", hasDropdown: true },
-  { label: "Media", href: "/media", hasDropdown: true },
-  { label: "Career", href: "/career" },
-  { label: "FAQs", href: "/faqs" },
-  { label: "Contact Us", href: "/contact" },
+  // { label: "Home", href: "/" },
+  // { label: "Services", href: "/services", hasDropdown: true },
+  // { label: "Associates", href: "/associates" },
+  // { label: "Support", href: "/support", hasDropdown: true },
+  // { label: "Media", href: "/media", hasDropdown: true },
+  // { label: "Career", href: "/career" },
+  // { label: "FAQs", href: "/faqs" },
+  // { label: "Contact Us", href: "/contact" },
 ];
 
 const Header = () => {

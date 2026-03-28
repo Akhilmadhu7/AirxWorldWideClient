@@ -29,7 +29,7 @@ const LOCATIONS = [
     hours: "Monday to Saturday 9:00 am – 6:00 pm",
     email: "airxworldwide@gmail.com",
     phone: "8943479246",
-    mapUrl: "https://maps.google.com/?q=8.808461,76.789360",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3942.762875166154!2d76.789402!3d8.808334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zOMKwNDgnMzAuMCJOIDc2wrA0NycyMS45IkU!5e0!3m2!1sen!2sin!4v1774684562200!5m2!1sen!2sin" ,
   },
 ];
 
