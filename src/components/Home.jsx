@@ -5,6 +5,7 @@ import StatsSection from "./StatSection";
 import PartnerSection from "./ui/PartnerSection";
 import TrackingCard from "./TrackingCard";
 import Associates from "./Associates";
+import VolumetricCalculator from "./volumetricCalculator";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <StatsSection />
       {/* </div> */}
       <Associates />
+      <VolumetricCalculator/>
       <PartnerSection />
       <FindUsSection />
     </div>
