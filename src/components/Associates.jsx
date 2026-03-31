@@ -4,7 +4,7 @@ import pic_1 from "../../public/pic_1.jpeg";
 import trackon_logo from "../../public/trackon_logo.png"
 import fedex_logo from "../../public/fedex_logo.png"
 import dhl_Logo from "../../public/dhl_Logo.png"
-import aramex_logo from "../../public/aramex_logo.png"
+import aramex_logo_1 from "../../public/aramex_logo_1.png"
 import ups_logo from "../../public/ups_logo.png"
 import valmo_logo from "../../public/valmo_logo.png"
 import dpd_logo from "../../public/dpd_logo.jpg"
@@ -22,7 +22,7 @@ const ASSOCIATES = [
   },
   {
     name: "Aramex",
-    logo: aramex_logo,
+    logo: aramex_logo_1,
     color: "#cc0000",
   },
   {
