@@ -4,10 +4,12 @@ const PartnerSection = () => {
   return (
     <SplitBanner
       image="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop&q=80"
-      imageAlt="Become our partner - handshake"
-      badge="Partnership"
-      title="Become Our Partner"
-      description="Grow your business with our reliable logistics network. Join thousands of partners who trust AirX Worldwide for seamless international courier solutions."
+      imageAlt="Ship with AirX Worldwide"
+      badge="Get Started"
+      title="Ship With Us Today"
+      description="Have a shipment ready to go? Get in touch with our team instantly via WhatsApp. 
+                    Whether it's a single parcel or bulk cargo, we'll find the fastest and most 
+                    cost-effective solution for you — no lengthy forms, no waiting."
       primaryBtn={{
         label: "Contact via WhatsApp",
         href: "https://wa.me/your-number",
@@ -17,9 +19,14 @@ const PartnerSection = () => {
           </svg>
         ),
       }}
-    //   secondaryBtn={{
-    //     label: "Learn More",
-    //     href: "/associates",
+    // secondaryBtn={{
+    //     label: "Call Us Now",
+    //     href: "tel:+919061960989",
+    //     icon: (
+    //       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    //         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
+    //       </svg>
+    //     ),
     //   }}
     />
   );
