@@ -6,7 +6,6 @@ import PartnerSection from "./ui/PartnerSection";
 import TrackingCard from "./TrackingCard";
 import Associates from "./Associates";
 import VolumetricCalculator from "./VolumetricCalculator";
-import Associates from "./Associates";
 
 const Home = () => {
   return (
