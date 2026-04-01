@@ -5,7 +5,8 @@ import StatsSection from "./StatSection";
 import PartnerSection from "./ui/PartnerSection";
 import TrackingCard from "./TrackingCard";
 import Associates from "./Associates";
-import VolumetricCalculator from "./volumetricCalculator";
+import VolumetricCalculator from "./VolumetricCalculator";
+import Associates from "./Associates";
 
 const Home = () => {
   return (
