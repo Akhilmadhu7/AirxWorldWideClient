@@ -6,6 +6,7 @@ import PartnerSection from "./ui/PartnerSection";
 import TrackingCard from "./TrackingCard";
 import Associates from "./Associates";
 import VolumetricCalculator from "./VolumetricCalculator";
+import CustomerQuote from "./CustomerQuote";
 
 const Home = () => {
   return (
@@ -17,9 +18,10 @@ const Home = () => {
         <StatsSection />
       {/* </div> */}
       <Associates />
-      <VolumetricCalculator/>
       <PartnerSection />
       <FindUsSection />
+      <VolumetricCalculator/>
+      <CustomerQuote />
     </div>
   );
 };
