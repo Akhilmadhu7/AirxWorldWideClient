@@ -4,14 +4,14 @@ import { trackShipmentAPI } from "../api/trackingApi";
 import TrackingResult from "./TrackingResult";
 
 const TRACKING_TYPES = [
-  { label: "Domestic",      value: "DOMESTIC" },
+  { label: "Domestic", value: "DOMESTIC" },
   { label: "International", value: "INTERNATIONAL" },
 ];
 
 const TrackingCard = () => {
   const [trackingType, setTrackingType] = useState(null); // ← null = nothing selected
-  const [trackingId, setTrackingId]     = useState("");
-  const [isLoading, setIsLoading]       = useState(false);
+  const [trackingId, setTrackingId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [trackingData, setTrackingData] = useState(null);
   const [isResultOpen, setIsResultOpen] = useState(false);
   const [trackingError, setTrackingError] = useState(null);
@@ -22,7 +22,9 @@ const TrackingCard = () => {
 
     // validate shipment type
     if (!trackingType) {
-      setTrackingError("Please select a shipment type — Domestic or International.");
+      setTrackingError(
+        "Please select a shipment type — Domestic or International.",
+      );
       return;
     }
 
@@ -42,14 +44,17 @@ const TrackingCard = () => {
       const errorCode = data?.Response?.ErrorCode ?? null;
       if (errorCode === "1") {
         setTrackingError(
-          data?.Response?.ErrorDisc ?? "Please check tracking ID and try again."
+          data?.Response?.ErrorDisc ??
+            "Please check tracking ID and try again.",
         );
       } else {
         setTrackingData(data);
         setIsResultOpen(true);
       }
     } catch (error) {
-      setTrackingError(error?.message ?? "Something went wrong. Please try again.");
+      setTrackingError(
+        error?.message ?? "Something went wrong. Please try again.",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -64,12 +69,10 @@ const TrackingCard = () => {
       {/* <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12"> */}
       <div className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-12">
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-
           {/* Top accent line */}
           <div className="h-0.5 bg-linear-to-r from-[#1e2a6e] to-[#f5a623]" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-
             {/* Left — Track Your Order */}
             <div className="md:col-span-2 px-6 py-6">
               <h3 className="text-base font-extrabold text-[#1e2a6e] mb-4">
@@ -120,9 +123,24 @@ const TrackingCard = () => {
                   }`}
                 >
                   {isLoading ? (
-                    <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                    <svg
+                      className="w-4 h-4 animate-spin"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8z"
+                      />
                     </svg>
                   ) : null}
                   {isLoading ? "Tracking..." : "Track"}
@@ -132,7 +150,11 @@ const TrackingCard = () => {
               {/* Error message */}
               {trackingError && (
                 <p className="mt-2 text-xs text-red-500 font-medium flex items-center gap-1">
-                  <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-3.5 h-3.5 shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
                   </svg>
                   {trackingError}
@@ -141,43 +163,61 @@ const TrackingCard = () => {
             </div>
 
             {/* Right — Get a Quote */}
-<div className="px-6 py-6 flex flex-col justify-center gap-4">
+            <div className="px-6 py-6 flex flex-col justify-center gap-4">
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-xl bg-[#f5a623]/10 flex items-center justify-center">
+                <svg
+                  className="w-6 h-6 text-[#f5a623]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
 
-  {/* Icon */}
-  <div className="w-12 h-12 rounded-xl bg-[#f5a623]/10 flex items-center justify-center">
-    <svg className="w-6 h-6 text-[#f5a623]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
-  </div>
+              {/* Text */}
+              <div>
+                <h3 className="text-base font-extrabold text-[#1e2a6e] mb-1">
+                  Get a Quote
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  Get an instant delivery quote tailored to your shipment —
+                  fast, transparent, and free.
+                </p>
+              </div>
 
-  {/* Text */}
-  <div>
-    <h3 className="text-base font-extrabold text-[#1e2a6e] mb-1">
-      Get a Quote
-    </h3>
-    <p className="text-sm text-gray-400 leading-relaxed">
-      Get an instant delivery quote tailored to your shipment — fast, transparent, and free.
-    </p>
-  </div>
-
-  {/* CTA */}
-  <button
-    onClick={() => {
-      document.getElementById("get-a-quote")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }}
-    className="hover:cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-[#1e2a6e] hover:bg-[#16205a] text-white text-sm font-semibold rounded-xl transition-colors duration-200 w-fit"
-  >
-    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-    </svg>
-    Get a Quote
-  </button>
-
-</div>
-
+              {/* CTA */}
+              <button
+                onClick={() => {
+                  document.getElementById("get-a-quote")?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }}
+                className="hover:cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-[#1e2a6e] hover:bg-[#16205a] text-white text-sm font-semibold rounded-xl transition-colors duration-200 w-fit"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+                Get a Quote
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -14,16 +14,14 @@ const Home = () => {
       <HeroSection />
       <TrackingCard />
       <Services />
-      {/* <div className="mt-10"> */}
-        <StatsSection />
-      {/* </div> */}
+      <StatsSection />
       <Associates />
       <PartnerSection />
       <FindUsSection />
-      <VolumetricCalculator/>
+      <VolumetricCalculator />
       <div id="get-a-quote">
-  <CustomerQuote />
-</div>
+        <CustomerQuote />
+      </div>
     </div>
   );
 };
