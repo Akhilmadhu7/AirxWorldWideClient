@@ -21,7 +21,9 @@ const Home = () => {
       <PartnerSection />
       <FindUsSection />
       <VolumetricCalculator/>
-      <CustomerQuote />
+      <div id="get-a-quote">
+  <CustomerQuote />
+</div>
     </div>
   );
 };

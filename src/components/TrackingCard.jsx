@@ -140,38 +140,43 @@ const TrackingCard = () => {
               )}
             </div>
 
-            {/* Right — Price Calculator */}
-            <div className="px-6 py-6 flex flex-col justify-center gap-4">
+            {/* Right — Get a Quote */}
+<div className="px-6 py-6 flex flex-col justify-center gap-4">
 
-              {/* Icon */}
-              <div className="w-12 h-12 rounded-xl bg-[#f5a623]/10 flex items-center justify-center">
-                <svg className="w-6 h-6 text-[#f5a623]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
+  {/* Icon */}
+  <div className="w-12 h-12 rounded-xl bg-[#f5a623]/10 flex items-center justify-center">
+    <svg className="w-6 h-6 text-[#f5a623]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+  </div>
 
-              {/* Text */}
-              <div>
-                <h3 className="text-base font-extrabold text-[#1e2a6e] mb-1">
-                  Price Calculator
-                </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
-                  Estimate your shipping cost by weight, destination and service type.
-                </p>
-              </div>
+  {/* Text */}
+  <div>
+    <h3 className="text-base font-extrabold text-[#1e2a6e] mb-1">
+      Get a Quote
+    </h3>
+    <p className="text-sm text-gray-400 leading-relaxed">
+      Get an instant delivery quote tailored to your shipment — fast, transparent, and free.
+    </p>
+  </div>
 
-              {/* CTA */}
-              <a
-                // href="/price-calculator"
-                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1e2a6e] hover:bg-[#16205a] text-white text-sm font-semibold rounded-xl transition-colors duration-200 w-fit"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                Calculate Price
-              </a>
+  {/* CTA */}
+  <button
+    onClick={() => {
+      document.getElementById("get-a-quote")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }}
+    className="hover:cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 bg-[#1e2a6e] hover:bg-[#16205a] text-white text-sm font-semibold rounded-xl transition-colors duration-200 w-fit"
+  >
+    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    </svg>
+    Get a Quote
+  </button>
 
-            </div>
+</div>
 
           </div>
         </div>
