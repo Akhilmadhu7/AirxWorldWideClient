@@ -1,30 +1,40 @@
-export const createCustomerQuote = async ({ payload }) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_BASE_URL}v1/customer-quote`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    }
-  );
+// export const createCustomerQuote = async ({ payload }) => {
+//   const response = await fetch(
+//     `${import.meta.env.VITE_API_BASE_URL}v1/customer-quote/`,
+//     {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(payload),
+//     }
+//   );
 
-  const data = await response.json();
+//   const data = await response.json();
+//   if (!response.ok) {
+//     console.error("API error response:", data);
 
-  if (!response.ok) {
-    console.error("API error response:", data);
+//     if (response.status === 422 || response.status >= 500) {
+//       throw new Error(JSON.stringify(data?.detail) || "Validation or server error. Please check your input and try again.");
+//     }
+//     //   throw new Error("Something went wrong. Please try again later.");
+//     // }
 
-    if (response.status === 422 || response.status >= 500) {
-      throw new Error("Something went wrong. Please try again later.");
-    }
+//     const message =
+//       data?.detail ||
+//       data?.message ||
+//       data?.Response?.ErrorDisc ||
+//       "Failed to submit quote. Please try again.";
 
-    const message =
-      data?.detail ||
-      data?.message ||
-      data?.Response?.ErrorDisc ||
-      "Failed to submit quote. Please try again.";
+//     throw new Error(typeof message === "string" ? message : JSON.stringify(message));
+//   }
 
-    throw new Error(typeof message === "string" ? message : JSON.stringify(message));
-  }
+//   return data?.data;
+// };
 
-  return data?.data;
-};
+import { httpGet, httpPatch, httpDelete, httpPost } from "./httpMethods";
+
+const CustomerQuoteBaseUrl = `${import.meta.env.VITE_API_BASE_URL}v1/customer-quote/`;
+
+export const customerQuoteAPI = {
+    createCustomerQuote: (data, headers={}) =>
+        httpPost({url: `${CustomerQuoteBaseUrl}`, data, headers})
+}

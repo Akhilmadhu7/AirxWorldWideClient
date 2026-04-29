@@ -52,6 +52,7 @@ const TrackingCard = () => {
         setIsResultOpen(true);
       }
     } catch (error) {
+      console.log("error from API:", error);
       setTrackingError(
         error?.message ?? "Something went wrong. Please try again.",
       );

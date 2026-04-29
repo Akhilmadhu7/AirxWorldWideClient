@@ -5,8 +5,8 @@ export const trackShipmentAPI = async ({ awb_number, courier_type }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        awb_number: awb_number,
-        courier_type: courier_type,
+        awbNumber: awb_number,
+        courierType: courier_type,
       }),
     }
   );
@@ -16,7 +16,7 @@ export const trackShipmentAPI = async ({ awb_number, courier_type }) => {
   if (!response.ok) {
     // backend error response body is now available
     throw new Error(
-      data?.detail ||
+      data?.details ||
       data?.message ||
       data?.Response?.ErrorDisc ||
       "Tracking failed. Please try again."

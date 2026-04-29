@@ -1,35 +1,22 @@
-import axios from "axios";
+import axiosInstance from "./axiosInterceptor";
 
-export const httpGet = async ({url, headers, params}) => {
-    
-    headers = {
-        ...headers,
-        "accept": "application/json"
-    }
+export const httpGet = async ({ url, params = {} }) => {
+  const response = await axiosInstance.get(url, { params });
+  return response?.data || [];
+};
 
-    try{
-        const response = await axios.get(url, {headers, params});
-        console.log("GET response:", response.data);
-        return response;
-    } catch (error) {  
-        console.error("GET error:", error.response ? error.response.data : error.message);
-    }
-}
+export const httpPost = async ({ url, data }) => {
+  const response = await axiosInstance.post(url, data);
+  console.log("httpPost response:", response);
+  return response?.data || {};
+};
 
-export const httpPost = async ({url, data, headers, }) => {
-    headers = {
-        ...headers,
-        "accept": "application/json",
-        "Content-Type": "application/json"
-    }
+export const httpPatch = async ({ url, data }) => {
+  const response = await axiosInstance.patch(url, data);
+  return response?.data || {};
+};
 
-    try{
-
-        const response = await axios.post(url, data, {headers});
-        console.log("POST response:", response.data);
-        return response;
-
-    } catch (error) {
-        console.error("POST error:", error.response ? error.response.data : error.message); 
-    }
-}
+export const httpDelete = async ({ url }) => {
+  const response = await axiosInstance.delete(url);
+  return response?.data || {};
+};
