@@ -34,6 +34,7 @@ const EMPTY_FORM = {
   customerQuoteActualWeight: "",
   customerQuoteVolumetricWeight: "",
   customerQuoteRequirement: "",
+  customerQuoteCouponCode:""
 };
 
 const CustomerQuote = ({ onClose }) => {
@@ -73,6 +74,18 @@ const CustomerQuote = ({ onClose }) => {
       newErrors.customerQuoteVolumetricWeight = "Enter a valid weight";
     if (!formData.customerQuoteRequirement.trim())
       newErrors.customerQuoteRequirement = "Description is required";
+    if (formData.customerQuoteCouponCode) {
+      const trimmed = formData.customerQuoteCouponCode.trim();
+      
+      if (trimmed.length === 0) {
+        newErrors.customerQuoteCouponCode = "Coupon code cannot be empty spaces";
+      } else if (trimmed.length < 3 || trimmed.length > 20) {
+        newErrors.customerQuoteCouponCode = "Coupon code must be between 3 and 20 characters";
+      }
+    } 
+    else {
+      formData.customerQuoteCouponCode = null; // Set to null if empty for backend compatibility
+    }
     return newErrors;
   };
 
@@ -86,13 +99,14 @@ const CustomerQuote = ({ onClose }) => {
     setIsLoading(true);
 
     try {
-      // await createCustomerQuote({ payload: formData });
+      
       await customerQuoteAPI.createCustomerQuote(formData);
         
       toast.success(
         "Your quote request has been submitted! Our team will get back to you shortly.",
       );
       setFormData(EMPTY_FORM);
+      setErrors({});
 
       
 
@@ -107,7 +121,7 @@ const CustomerQuote = ({ onClose }) => {
         
         setErrors(err);
       } else {
-            toast.error(errorMessage || "Failed to create coupon.");
+            toast.error(err || "Failed to create coupon.");
       }
       
     } finally {
@@ -331,6 +345,17 @@ const CustomerQuote = ({ onClose }) => {
                     error={errors.customerQuoteVolumetricWeight}
                   />
                 </div>
+
+                <Input
+                  label="Coupon Code"
+                  name="customerQuoteCouponCode"
+                  id="customerQuoteCouponCode"
+                  type="text"
+                  value={formData.customerQuoteCouponCode}
+                  onChange={handleChange}
+                  placeholder="Enter coupon code (if any)"
+                  error={errors.customerQuoteCouponCode}
+                />
 
                 {/* Description */}
                 <div className="flex flex-col gap-1.5">
