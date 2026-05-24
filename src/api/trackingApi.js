@@ -5,8 +5,8 @@ export const trackShipmentAPI = async ({ awb_number, courier_type }) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        awbNumber: awb_number,
-        courierType: courier_type,
+        awb_number: awb_number,
+        courier_type: courier_type,
       }),
     }
   );

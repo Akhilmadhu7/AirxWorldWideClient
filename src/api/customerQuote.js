@@ -32,7 +32,7 @@
 
 import { httpGet, httpPatch, httpDelete, httpPost } from "./httpMethods";
 
-const CustomerQuoteBaseUrl = `${import.meta.env.VITE_API_BASE_URL}v1/customer-quote/`;
+const CustomerQuoteBaseUrl = `${import.meta.env.VITE_API_BASE_URL}v1/customer-quote`;
 
 export const customerQuoteAPI = {
     createCustomerQuote: (data, headers={}) =>

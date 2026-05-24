@@ -26,15 +26,15 @@ const Feature = ({ icon, title, desc }) => (
 );
 
 const EMPTY_FORM = {
-  customerQuoteFullName: "",
-  customerQuotePhoneNumber: "",
-  customerQuoteEmail: "",
-  customerQuoteSenderAddress: "",
-  customerQuoteReceiverAddress: "",
-  customerQuoteActualWeight: "",
-  customerQuoteVolumetricWeight: "",
-  customerQuoteRequirement: "",
-  customerQuoteCouponCode:""
+  customer_quote_fullname: "",
+  customer_quotePhoneNumber: "",
+  customer_quote_email: "",
+  customer_quote_sender_address: "",
+  customer_quote_receiver_address: "",
+  customer_quote_actual_weight: "",
+  customer_quote_volumetric_weight: "",
+  customer_quote_requirement: "",
+  customer_quote_coupon_code: ""
 };
 
 const CustomerQuote = ({ onClose }) => {
@@ -50,41 +50,43 @@ const CustomerQuote = ({ onClose }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.customerQuoteFullName.trim())
-      newErrors.customerQuoteFullName = "Full name is required";
-    if (!formData.customerQuoteSenderAddress.trim())
-      newErrors.customerQuoteSenderAddress = "Sender's address is required";
-    if (!formData.customerQuoteReceiverAddress.trim())
-      newErrors.customerQuoteReceiverAddress =
+    if (!formData.customer_quote_fullname.trim())
+      newErrors.customer_quote_fullname = "Full name is required";
+    if (!formData.customer_quote_sender_address.trim())
+      newErrors.customer_quote_sender_address = "Sender's address is required";
+    if (!formData.customer_quote_receiver_address.trim())
+      newErrors.customer_quote_receiver_address = "Receiver's address is required";
+    if (!formData.customer_quote_actual_weight)
+      newErrors.customer_quoteActualWeight = "Actual weight is required";
         "Receiver's address is required";
-    if (!formData.customerQuoteActualWeight)
-      newErrors.customerQuoteActualWeight = "Actual weight is required";
+    if (!formData.customer_quote_actual_weight)
+      newErrors.customer_quoteActualWeight = "Actual weight is required";
     else if (
-      isNaN(formData.customerQuoteActualWeight) ||
-      Number(formData.customerQuoteActualWeight) <= 0
+      isNaN(formData.customer_quote_actual_weight) ||
+      Number(formData.customer_quote_actual_weight) <= 0
     )
-      newErrors.customerQuoteActualWeight = "Enter a valid weight";
-    if (!formData.customerQuoteVolumetricWeight)
-      newErrors.customerQuoteVolumetricWeight =
+      newErrors.customer_quote_actual_weight = "Enter a valid weight";
+    if (!formData.customer_quote_volumetric_weight)
+      newErrors.customer_quote_volumetric_weight =
         "Volumetric weight is required";
     else if (
-      isNaN(formData.customerQuoteVolumetricWeight) ||
-      Number(formData.customerQuoteVolumetricWeight) <= 0
+      isNaN(formData.customer_quote_volumetric_weight) ||
+      Number(formData.customer_quote_volumetric_weight) <= 0
     )
-      newErrors.customerQuoteVolumetricWeight = "Enter a valid weight";
-    if (!formData.customerQuoteRequirement.trim())
-      newErrors.customerQuoteRequirement = "Description is required";
-    if (formData.customerQuoteCouponCode) {
-      const trimmed = formData.customerQuoteCouponCode.trim();
+      newErrors.customer_quote_volumetric_weight = "Enter a valid weight";
+    if (!formData.customer_quote_requirement.trim())
+      newErrors.customer_quote_requirement = "Description is required";
+    if (formData.customer_quote_coupon_code) {
+      const trimmed = formData.customer_quote_coupon_code.trim();
       
       if (trimmed.length === 0) {
-        newErrors.customerQuoteCouponCode = "Coupon code cannot be empty spaces";
+        newErrors.customer_quote_coupon_code = "Coupon code cannot be empty spaces";
       } else if (trimmed.length < 3 || trimmed.length > 20) {
-        newErrors.customerQuoteCouponCode = "Coupon code must be between 3 and 20 characters";
+        newErrors.customer_quote_coupon_code = "Coupon code must be between 3 and 20 characters";
       }
     } 
     else {
-      formData.customerQuoteCouponCode = null; // Set to null if empty for backend compatibility
+      formData.customer_quote_coupon_code = null; // Set to null if empty for backend compatibility
     }
     return newErrors;
   };
@@ -235,35 +237,35 @@ const CustomerQuote = ({ onClose }) => {
                 {/* Full Name */}
                 <Input
                   label="Full Name"
-                  name="customerQuoteFullName"
-                  id="customerQuoteFullName"
-                  value={formData.customerQuoteFullName}
+                  name="customer_quote_fullname"
+                  id="customer_quote_fullname"
+                  value={formData.customer_quote_fullname}
                   onChange={handleChange}
                   placeholder="Full Name"
                   required
-                  error={errors.customerQuoteFullName}
+                  error={errors.customer_quote_fullname}
                 />
 
                 {/* Phone + Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
                     label="Phone Number"
-                    name="customerQuotePhoneNumber"
-                    id="customerQuotePhoneNumber"
-                    value={formData.customerQuotePhoneNumber}
+                    name="customer_quote_phone_number"
+                    id="customer_quote_phone_number"
+                    value={formData.customer_quote_phone_number}
                     onChange={handleChange}
                     placeholder="Phone Number"
-                    error={errors.customerQuotePhoneNumber}
+                    error={errors.customer_quote_phone_number}
                   />
                   <Input
                     label="Email"
-                    name="customerQuoteEmail"
-                    id="customerQuoteEmail"
+                    name="customer_quote_email"
+                    id="customer_quote_email"
                     type="email"
-                    value={formData.customerQuoteEmail}
+                    value={formData.customer_quote_email}
                     onChange={handleChange}
                     placeholder="Email"
-                    error={errors.customerQuoteEmail}
+                    error={errors.customer_quote_email}
                   />
                 </div>
 
@@ -278,17 +280,17 @@ const CustomerQuote = ({ onClose }) => {
                       <span className="text-red-400 ml-1">*</span>
                     </label>
                     <textarea
-                      id="customerQuoteSenderAddress"
-                      name="customerQuoteSenderAddress"
-                      value={formData.customerQuoteSenderAddress}
+                      id="customer_quote_sender_address"
+                      name="customer_quote_sender_address"
+                      value={formData.customer_quote_sender_address}
                       onChange={handleChange}
                       placeholder="Sender's Address"
                       rows={3}
-                      className={textareaClass("customerQuoteSenderAddress")}
+                      className={textareaClass("customer_quote_sender_address")}
                     />
-                    {errors.customerQuoteSenderAddress && (
+                    {errors.customer_quote_sender_address && (
                       <p className="text-red-400 text-xs">
-                        {errors.customerQuoteSenderAddress}
+                        {errors.customer_quote_sender_address}
                       </p>
                     )}
                   </div>
@@ -302,19 +304,19 @@ const CustomerQuote = ({ onClose }) => {
                       <span className="text-red-400 ml-1">*</span>
                     </label>
                     <textarea
-                      id="customerQuoteReceiverAddress"
-                      name="customerQuoteReceiverAddress"
-                      value={formData.customerQuoteReceiverAddress}
+                      id="customer_quote_receiver_address"
+                      name="customer_quote_receiver_address"
+                      value={formData.customer_quote_receiver_address}
                       onChange={handleChange}
                       placeholder="Receiver's Address"
                       rows={3}
                       className={textareaClass(
-                        "customerQuoteReceiverAddress",
+                        "customer_quote_receiver_address",
                       )}
                     />
-                    {errors.customerQuoteReceiverAddress && (
+                    {errors.customer_quote_receiver_address && (
                       <p className="text-red-400 text-xs">
-                        {errors.customerQuoteReceiverAddress}
+                        {errors.customer_quote_receiver_address}
                       </p>
                     )}
                   </div>
@@ -324,37 +326,37 @@ const CustomerQuote = ({ onClose }) => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
                     label="Actual Weight (kg)"
-                    name="customerQuoteActualWeight"
-                    id="customerQuoteActualWeight"
+                    name="customer_quote_actual_weight"
+                    id="customer_quote_actual_weight"
                     type="number"
-                    value={formData.customerQuoteActualWeight}
+                    value={formData.customer_quote_actual_weight}
                     onChange={handleChange}
                     placeholder="Actual Weight"
                     required
-                    error={errors.customerQuoteActualWeight}
+                    error={errors.customer_quote_actual_weight}
                   />
                   <Input
                     label="Volumetric Weight (kg)"
-                    name="customerQuoteVolumetricWeight"
-                    id="customerQuoteVolumetricWeight"
+                    name="customer_quote_volumetric_weight"
+                    id="customer_quote_volumetric_weight"
                     type="number"
-                    value={formData.customerQuoteVolumetricWeight}
+                    value={formData.customer_quote_volumetric_weight}
                     onChange={handleChange}
                     placeholder="Volumetric Weight"
                     required
-                    error={errors.customerQuoteVolumetricWeight}
+                    error={errors.customer_quote_volumetric_weight}
                   />
                 </div>
 
                 <Input
                   label="Coupon Code"
-                  name="customerQuoteCouponCode"
-                  id="customerQuoteCouponCode"
+                  name="customer_quote_coupon_code"
+                  id="customer_quote_coupon_code"
                   type="text"
-                  value={formData.customerQuoteCouponCode}
+                  value={formData.customer_quote_coupon_code}
                   onChange={handleChange}
                   placeholder="Enter coupon code (if any)"
-                  error={errors.customerQuoteCouponCode}
+                  error={errors.customer_quote_coupon_code}
                 />
 
                 {/* Description */}
@@ -366,17 +368,17 @@ const CustomerQuote = ({ onClose }) => {
                     Description <span className="text-red-400 ml-1">*</span>
                   </label>
                   <textarea
-                    id="customerQuoteRequirement"
-                    name="customerQuoteRequirement"
-                    value={formData.customerQuoteRequirement}
+                    id="customer_quote_requirement"
+                    name="customer_quote_requirement"
+                    value={formData.customer_quote_requirement}
                     onChange={handleChange}
                     placeholder="Describe your requirements..."
                     rows={4}
-                    className={textareaClass("customerQuoteRequirement")}
+                    className={textareaClass("customer_quote_requirement")}
                   />
-                  {errors.customerQuoteRequirement && (
+                  {errors.customer_quote_requirement && (
                     <p className="text-red-400 text-xs">
-                      {errors.customerQuoteRequirement}
+                      {errors.customer_quote_requirement}
                     </p>
                   )}
                 </div>

@@ -9,26 +9,24 @@ const handleErrorResponses = (error) => {
   }
 
   const status_code = error?.status || 500;
-  const detail = error?.response?.data?.details;
+  const detail = error?.response?.data?.detail;
   console.log("status code:", detail);
   console.log("status code:", status_code);
 
   if (status_code === 403) {
     return detail || "You don't have permission to perform this action.";
   }
-
-  if (status_code === 422) {
-    // FastAPI validation errors — detail is an array of objects with string key and list of error messages as value
-    if (Array.isArray(detail)) {
-      const newErrors = {};
-      for (const item of detail) {
-        const key = Object.keys(item)[0];
-        const messages = item[key];
-        newErrors[key] = Array.isArray(messages) ? messages[0] : messages;
-      }
-      return newErrors;
+  
+  if (status_code == 422) {
+    console.error("errors", detail);
+    const newErrors = {};
+    for (const item of detail) {
+      console.log("error item:", item);
+      const errorLocation = item?.loc || "unknown";
+      newErrors[errorLocation[1]] = item?.msg || "Field required.";
     }
-    return detail || "Validation error. Please check your input.";
+    console.log("newErrors", newErrors);
+    return newErrors;
   }
 
   if (status_code === 404) {
