@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import Modal from "./ui/Modal";
 import InfoCard from "./ui/InfoCard";
 import InfoRow from "./ui/InfoRow";
@@ -27,17 +26,18 @@ const LocationPinIcon = () => (
   </svg>
 );
 
-// timestamp is an ISO string from NormalizedTracking (e.g. "2026-07-28T21:58:00")
-const formatDate = (isoString) => (isoString ? format(new Date(isoString), "d MMM yyyy") : "");
-const formatTime = (isoString) => (isoString ? format(new Date(isoString), "h:mm a") : "");
+const TrackingResultModal = ({ isOpen, onClose, data, awbNo }) => {
+  if (!data) return null;
+console.log("tracking data is here: ",data)
+  const tracking = data?.Response?.Tracking?.[0] ?? {};
+  const events   = data?.Response?.Events        ?? [];
+    console.log("tracking : ", tracking)
+    console.log("eents; ====", events)
+  // latest status is first event
+  const latestStatus = events[0]?.Status ?? "";
 
-const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
-  if (!trackingData) return null;
+  const isDelivered = latestStatus.toLowerCase().includes("delivered");
 
-  const events = trackingData?.events ?? [];
-  const isDelivered = trackingData?.status === "delivered";
-  const latestStatusLabel = events[0]?.status_raw || trackingData?.status || "In Transit";
-  
   return (
     <Modal
       isOpen={isOpen}
@@ -45,29 +45,31 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
       title="Shipment Tracking"
       subtitle={`AWB No: ${awbNo}`}
     >
-      {/* ── 1. Sender / Receiver ── */}
+
+
+
+    {/* ── 1. Sender / Receiver ── */}
       <InfoCard title="Account Details" icon={<AccountIcon />}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-          <InfoRow label="Shipper"       value={trackingData?.shipper_name} />
-          <InfoRow label="Consignee"     value={trackingData?.consignee_name} />
-          <InfoRow label="Origin"        value={trackingData?.origin} />
-          <InfoRow label="Destination"   value={trackingData?.destination} />
-          <InfoRow label="From Country"  value={trackingData?.origin_country} />
-          <InfoRow label="To Country"    value={trackingData?.destination_country} />
-          {trackingData?.delivery_date && (
-            <InfoRow
-              label="Delivered On"
-              value={`${formatDate(trackingData.delivery_date)} ${formatTime(trackingData.delivery_date)}`}
-            />
+          <InfoRow label="Shipper"       value={tracking?.Shipper_Name} />
+          <InfoRow label="Consignee"     value={tracking?.Consignee} />
+          <InfoRow label="Origin"        value={tracking?.Origin} />
+          <InfoRow label="Destination"   value={tracking?.Destination} />
+          <InfoRow label="From Country"  value={tracking?.Origin_Country} />
+          <InfoRow label="To Country"    value={tracking?.Destination_Country} />
+          {tracking?.DeliveryDate1 && (
+            <InfoRow label="Delivered On" value={`${tracking.DeliveryDate1} ${tracking.DeliveryTime1 ?? ""}`} />
           )}
-          {trackingData?.receiver_name && (
-            <InfoRow label="Received By" value={trackingData.receiver_name} />
+          {tracking?.ReceiverName && (
+            <InfoRow label="Received By"  value={tracking.ReceiverName} />
           )}
         </div>
       </InfoCard>
 
+
       {/* ── 2. Shipment Summary ── */}
       <InfoCard title="Shipment Details" icon={<ShipmentIcon />}>
+
         {/* Status badge */}
         <div className="mb-4">
           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
@@ -76,19 +78,21 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
               : "bg-[#f5a623]/10 text-[#f5a623] border border-[#f5a623]/20"
           }`}>
             <span className={`w-1.5 h-1.5 rounded-full ${isDelivered ? "bg-green-500" : "bg-[#f5a623]"}`} />
-            {latestStatusLabel}
+            {latestStatus || "In Transit"}
           </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-          <InfoRow label="AWB No"        value={trackingData?.tracking_id} />
-          <InfoRow label="Ref No"        value={trackingData?.ref_no} />
-          <InfoRow label="Booking Date"  value={formatDate(trackingData?.booking_date)} />
-          <InfoRow label="Service"       value={trackingData?.service_name} />
-          <InfoRow label="Vendor"        value={trackingData?.vendor_name} />
-          <InfoRow label="Weight"        value={trackingData?.weight_kg ? `${trackingData.weight_kg} kg` : null} />
+          <InfoRow label="AWB No"        value={tracking?.AWBNo} />
+          <InfoRow label="Ref No"        value={tracking?.RefNo} />
+          <InfoRow label="Booking Date"  value={tracking?.BookingDate1} />
+          <InfoRow label="Service"       value={tracking?.ServiceName} />
+          <InfoRow label="Vendor"        value={tracking?.VendorName} />
+          <InfoRow label="Weight"        value={tracking?.Weight ? `${tracking.Weight} kg` : null} />
         </div>
       </InfoCard>
+
+      
 
       {/* ── 3. Shipment Events ── */}
       <InfoCard title="Shipment Events" icon={<EventIcon />}>
@@ -99,7 +103,10 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
         ) : (
           <div className="divide-y divide-gray-100">
             {events.map((event, index) => (
-              <div key={index} className="py-4 first:pt-0 last:pb-0">
+              <div
+                key={index}
+                className="py-4 first:pt-0 last:pb-0"
+              >
                 {/* Status */}
                 <p className={`text-sm font-bold mb-1 ${
                   index === 0 ? "text-[#1e2a6e]" : "text-gray-700"
@@ -107,22 +114,24 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
                   {index === 0 && (
                     <span className="inline-block w-2 h-2 rounded-full bg-[#f5a623] mr-2 mb-0.5" />
                   )}
-                  {event?.status_raw}
+                  {event?.Status}
                 </p>
 
                 {/* Date — Time */}
                 <p className="text-xs text-gray-400 mb-1.5">
-                  {formatDate(event?.timestamp)}
-                  {event?.timestamp && <span className="mx-1.5">—</span>}
-                  {formatTime(event?.timestamp)}
+                  {event?.EventDate1}
+                  {event?.EventTime1 && (
+                    <span className="mx-1.5">—</span>
+                  )}
+                  {event?.EventTime1}
                 </p>
 
                 {/* Location */}
-                {event?.location && (
+                {event?.Location && (
                   <div className="flex items-center gap-1">
                     <LocationPinIcon />
                     <span className="text-xs text-gray-500 font-medium">
-                      {event.location}
+                      {event.Location}
                     </span>
                   </div>
                 )}
@@ -131,6 +140,7 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
           </div>
         )}
       </InfoCard>
+
     </Modal>
   );
 };

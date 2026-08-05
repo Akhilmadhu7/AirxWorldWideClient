@@ -227,7 +227,7 @@ const TrackingCard = () => {
       <TrackingResult
         isOpen={isResultOpen}
         onClose={() => setIsResultOpen(false)}
-        data={trackingData}
+        trackingData={trackingData}
         awbNo={trackingId}
       />
     </>
