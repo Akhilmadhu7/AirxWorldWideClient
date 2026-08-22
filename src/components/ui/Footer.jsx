@@ -16,8 +16,8 @@ const Footer = () => {
           <div className="space-y-4">
             <div>
               <div className="flex items-baseline gap-0.5">
-                <span className="text-2xl font-extrabold text-white tracking-tight">air</span>
-                <span className="text-2xl font-extrabold text-[#f5a623] tracking-tight">X</span>
+                <span className="text-2xl font-extrabold text-white tracking-tight">rayo</span>
+                <span className="text-2xl font-extrabold text-[#f5a623] tracking-tight">n</span>
               </div>
               <p className="text-xs tracking-widest text-blue-300 uppercase mt-0.5">
                 International Courier
@@ -85,7 +85,7 @@ const Footer = () => {
       <div className="border-t border-[#2d3d8e]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-blue-300">
-            © {new Date().getFullYear()} AirX Worldwide International Courier. All rights reserved.
+            © {new Date().getFullYear()} Rayon Worldwide International Courier. All rights reserved.
           </p>
           <div className="flex gap-4">
             {/* {["Privacy Policy", "Terms of Use", "Sitemap"].map((item) => (
