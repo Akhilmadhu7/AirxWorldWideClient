@@ -16,7 +16,7 @@ const Modal = ({ isOpen, onClose, title, subtitle, children }) => {
         <div className="bg-[#1e2a6e] px-6 py-5 flex items-center justify-between shrink-0">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-[#f5a623]">
-              AirX Worldwide
+              Rayon Worldwide
             </p>
             <h2 className="text-lg font-extrabold text-white mt-0.5">
               {title}

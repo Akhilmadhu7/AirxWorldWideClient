@@ -86,7 +86,7 @@ const TrackingResultModal = ({ isOpen, onClose, trackingData, awbNo }) => {
           <InfoRow label="Booking Date"  value={formatDate(trackingData?.booking_date)} />
           <InfoRow label="Service"       value={trackingData?.service_name} />
           <InfoRow label="Vendor"        value={trackingData?.vendor_name} />
-          <InfoRow label="Weight"        value={trackingData?.weight_kg ? `${trackingData.weight_kg} kg` : null} />
+          {/* <InfoRow label="Weight"        value={trackingData?.weight_kg ? `${trackingData.weight_kg} kg` : null} /> */}
         </div>
       </InfoCard>
 

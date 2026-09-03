@@ -4,7 +4,7 @@ const PartnerSection = () => {
   return (
     <SplitBanner
       image="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop&q=80"
-      imageAlt="Ship with AirX Worldwide"
+      imageAlt="Ship with Rayon Worldwide"
       badge="Get Started"
       title="Ship With Us Today"
       description="Have a shipment ready to go? Get in touch with our team instantly via WhatsApp. 
