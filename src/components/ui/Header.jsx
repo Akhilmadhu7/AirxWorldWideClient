@@ -1,6 +1,6 @@
 import { useState } from "react";
-import airx from "../../../public/airx.png"
 import rayon from "../../../public/rayon.png"
+import  rayon_xmas from "../../../public/rayon_xmas.png"
 
 const NAV_LINKS = [
   // { label: "Home", href: "/" },
@@ -24,7 +24,7 @@ const Header = () => {
           {/* Logo */}
           <div className="shrink-0">
             <a href="/" className="flex items-center gap-2">
-              <img src={rayon} alt="Rayon Worldwide" className="h-16 w-auto" />
+              <img src={rayon_xmas} alt="Rayon Worldwide" className="h-16 w-auto" />
             </a>
           </div>
 
