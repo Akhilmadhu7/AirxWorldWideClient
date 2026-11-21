@@ -13,17 +13,20 @@ const ScratchWinModal = ({
 
   const [step, setStep] = useState("details");
   const [scratchData, setScratchData] = useState(null);
-//   const [claimed, setClaimed] = useState(false);
 
+  //for storing scratch form data 
   const [formData, setFormData] = useState({
     tracking_id: "",
     phone_number: "",
   });
 
+  //to store errors from API response
   const [errors, setErrors] = useState({});
 
+  // Loading state for API call
   const [loading, setLoading] = useState(false);
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -50,17 +53,45 @@ const ScratchWinModal = ({
       console.log("Error status:", status);
 
       if (status === 400) {
-        setErrors({ phone_number: error?.response?.data?.errors || "Invalid tracking id or phone number" });
+        //adding error state for tracking id and phone number.
+        //added trackign_id field value as true if error occurs because we need to display the input border in red color for tracking id and phone number.
+        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "Invalid tracking id or phone number" });
         
       } else if (status === 404) {
-        setErrors({ phone_number: error?.response?.data?.errors || "Shipment not found. Please check your details." });
+        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "Shipment not found. Please check your details." });
       } else {
-        setErrors({ phone_number: error?.response?.data?.errors || "An unexpected error occurred. Please try again." });
+        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "An unexpected error occurred. Please try again." });
       }
     } finally {
       setLoading(false);
     }
   };
+
+  const handleClaim = async (e) => {
+
+    //once the user clicks on claim button, we will call the claim API to claim the reward and close the modal.
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+
+      const response = await scratchGiftAPI.claimScratchGift({
+        tracking_id: formData.tracking_id.trim(),
+        phone_number: formData.phone_number.trim(),
+      });
+
+      console.log("Claim scratch gift API response:", response);
+    //   toast.success("Reward claimed! Check your email for details.");
+      onClose();
+    } catch (error) {
+      console.error("Error claiming scratch gift:", error?.response);
+      setErrors({ phone_number: error?.response?.data?.errors || "Failed to claim reward. Please try again." });
+    //   toast.error("Failed to claim reward. Please try again.");
+    } finally {
+      setLoading(false);
+      onClose(); // Close the modal after claiming, regardless of success or failure
+    }
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -144,7 +175,7 @@ const ScratchWinModal = ({
 
   return (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center
+      className="fixed inset-0 z-9999 flex items-center justify-center
       bg-black/60 backdrop-blur-sm p-3 sm:p-5"
       onClick={onClose}
     >
@@ -152,7 +183,7 @@ const ScratchWinModal = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby="scratch-title"
-        className="relative w-full max-w-[460px] overflow-hidden
+        className="relative w-full max-w-115 overflow-hidden
         rounded-2xl bg-white shadow-2xl
         animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
@@ -239,7 +270,7 @@ const ScratchWinModal = ({
                         tracking_id: e.target.value,
                       })}
                     placeholder="Enter your tracking ID"
-                    // error={errors.tracking_id}
+                    error={errors?.tracking_id}
                   />
                 </div>
 
@@ -302,7 +333,7 @@ const ScratchWinModal = ({
               <div
                 className="relative overflow-hidden rounded-xl
         border-2 border-dashed border-yellow-400
-        bg-gradient-to-br from-yellow-50 to-orange-50"
+        bg-linear-to-br from-yellow-50 to-orange-50"
               >
                 <div
                   className="flex h-40 flex-col items-center
@@ -372,10 +403,7 @@ const ScratchWinModal = ({
                     size="lg"
                     label="Claim Your Reward"
                     className="w-full"
-                    onClick={() => {
-                      onClose();
-                      toast.success("Reward claimed! Check your email for details.");
-                    }}
+                    onClick={(e) => handleClaim(e)}
                   />
                 </div>
               ) : (
