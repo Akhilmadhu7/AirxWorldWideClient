@@ -1,6 +1,6 @@
 import { httpGet, httpPatch, httpDelete, httpPost } from "./httpMethods";
 
-const ScratchGiftBaseUrl = `${import.meta.env.VITE_API_BASE_URL}v1/scratch-win/lookup`;
+const ScratchGiftBaseUrl = `${import.meta.env.VITE_API_BASE_URL}v1/scratch-win/scratch`;
 
 export const scratchGiftAPI = {
     createScratchGift: (data, headers={}) =>

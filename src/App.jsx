@@ -50,11 +50,9 @@ function App() {
       <ScratchWinModal
         open={showScratch}
         onClose={() => setShowScratch(false)}
-        onClaim={() => {
-          console.log("Reward claimed");
-        }}
-        prize="15% OFF"
-        couponCode="RAYON15"
+        // onClaim={() => {
+        //   console.log("Reward claimed");
+        // }}
       />
 
       <Routes>

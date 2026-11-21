@@ -7,14 +7,13 @@ import Input from "./ui/Input";
 const ScratchWinModal = ({
   open,
   onClose,
-  onClaim,
-  prize = "15% OFF",
-  couponCode = "RAYON15",
 }) => {
   const canvasRef = useRef(null);
   const [revealed, setRevealed] = useState(false);
 
   const [step, setStep] = useState("details");
+  const [scratchData, setScratchData] = useState(null);
+//   const [claimed, setClaimed] = useState(false);
 
   const [formData, setFormData] = useState({
     tracking_id: "",
@@ -42,6 +41,7 @@ const ScratchWinModal = ({
       });
 
       console.log("Scratch gift API response:", response);
+      setScratchData(response?.data || null);
       // API validation successful
       setStep("scratch");
     } catch (error) {
@@ -319,7 +319,7 @@ const ScratchWinModal = ({
                     className="text-4xl font-black text-[#1e2a6e]
             sm:text-5xl"
                   >
-                    {prize}
+                    {scratchData?.gift || "Better luck next time!"}
                   </h3>
 
                   <p className="text-sm font-medium text-gray-600">
@@ -355,14 +355,14 @@ const ScratchWinModal = ({
             bg-green-50 p-3"
                   >
                     <p className="text-xs font-medium text-green-700">
-                      YOUR COUPON CODE
+                      YOUR EXCLUSIVE REWARD
                     </p>
 
                     <p
                       className="mt-1 text-xl font-extrabold
               tracking-widest text-[#1e2a6e]"
                     >
-                      {couponCode}
+                      {scratchData?.gift || "Better luck next time!"}
                     </p>
                   </div>
 
@@ -372,7 +372,10 @@ const ScratchWinModal = ({
                     size="lg"
                     label="Claim Your Reward"
                     className="w-full"
-                    onClick={onClaim}
+                    onClick={() => {
+                      onClose();
+                      toast.success("Reward claimed! Check your email for details.");
+                    }}
                   />
                 </div>
               ) : (
