@@ -1,14 +1,20 @@
+
 import { Outlet } from "react-router-dom";
 import Header from "./ui/Header";
 import Footer from "./ui/Footer";
 
-const Layout = () => {
+const Layout = ({ onScratchClick, showScratchButton }) => {
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Header />
+      <Header
+        onScratchClick={onScratchClick}
+        showScratchButton={showScratchButton}
+      />
+
       <main className="flex-1">
-        <Outlet />  {/* ← renders the matched child route */}
+        <Outlet />
       </main>
+
       <Footer />
     </div>
   );

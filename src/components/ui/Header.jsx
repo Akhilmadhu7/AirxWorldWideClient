@@ -13,7 +13,7 @@ const NAV_LINKS = [
   // { label: "Contact Us", href: "/contact" },
 ];
 
-const Header = () => {
+const Header = ({ onScratchClick, showScratchButton }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -30,6 +30,7 @@ const Header = () => {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-1">
+            
             {NAV_LINKS.map((link) => (
               <a
                 key={link.label}
@@ -48,7 +49,20 @@ const Header = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center gap-0">
-            <button className="flex items-center gap-1 px-5 py-2.5 bg-[#1e2a6e] text-white text-sm font-semibold hover:bg-[#16205a] transition-colors">
+            {showScratchButton && (
+            <button
+              type="button"
+              onClick={onScratchClick}
+              className="relative flex items-center gap-2 px-4 py-2.5 mr-2
+                rounded-lg bg-linear-to-r from-amber-400 to-yellow-500
+                text-[#1e2a6e] text-sm font-bold shadow-sm
+                hover:shadow-md hover:-translate-y-0.5 transition-all cursor-pointer"
+            >
+              <span className="text-lg">🎁</span>
+              <span>Scratch & Win</span>
+            </button>
+          )}
+            {/* <button className="flex items-center gap-1 px-5 py-2.5 bg-[#1e2a6e] text-white text-sm font-semibold hover:bg-[#16205a] transition-colors">
               Login
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -56,11 +70,11 @@ const Header = () => {
             </button>
             <button className="px-5 py-2.5 bg-[#f5a623] text-white text-sm font-semibold hover:bg-[#e09610] transition-colors">
               Track
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile menu button */}
-          <button
+          {/* <button
             className="lg:hidden p-2 rounded-md text-[#1e2a6e] hover:text-[#f5a623] hover:bg-blue-50"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -73,7 +87,21 @@ const Header = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
+          </button> */}
+
+          {/* Scratch & Win Button for Mobile */}
+          {showScratchButton && (
+          <button
+            type="button"
+            onClick={onScratchClick}
+            className="flex lg:hidden items-center gap-1.5 rounded-lg
+              bg-linear-to-r from-amber-400 to-yellow-500 cursor-pointer
+              px-3 py-2 text-xs font-bold text-[#1e2a6e]"
+          >
+            <span>🎁</span>
+            <span>Scratch & Win</span>
           </button>
+        )}
         </div>
       </div>
 
