@@ -116,6 +116,14 @@ const Button = ({
       "focus-visible:ring-2 focus-visible:ring-red-300 focus-visible:ring-offset-2",
       "disabled:opacity-40 disabled:cursor-not-allowed",
     ].join(" "),
+
+     // Ghost — transparent button (Close, Dismiss)
+    ghost: [
+    "bg-transparent text-gray-500 border border-transparent",
+    "hover:bg-gray-100 hover:text-gray-800",
+    "focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2",
+    "disabled:opacity-40 disabled:cursor-not-allowed",
+  ].join(" "),
   };
 
   // const icons = {

@@ -4,17 +4,14 @@ import { scratchGiftAPI } from "../api/scratchGift";
 import toast from "react-hot-toast";
 import Input from "./ui/Input";
 
-const ScratchWinModal = ({
-  open,
-  onClose,
-}) => {
+const ScratchWinModal = ({ open, onClose }) => {
   const canvasRef = useRef(null);
   const [revealed, setRevealed] = useState(false);
 
   const [step, setStep] = useState("details");
   const [scratchData, setScratchData] = useState(null);
 
-  //for storing scratch form data 
+  //for storing scratch form data
   const [formData, setFormData] = useState({
     tracking_id: "",
     phone_number: "",
@@ -55,12 +52,26 @@ const ScratchWinModal = ({
       if (status === 400) {
         //adding error state for tracking id and phone number.
         //added trackign_id field value as true if error occurs because we need to display the input border in red color for tracking id and phone number.
-        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "Invalid tracking id or phone number" });
-        
+        setErrors({
+          tracking_id: true,
+          phone_number:
+            error?.response?.data?.message ||
+            "Invalid tracking id or phone number",
+        });
       } else if (status === 404) {
-        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "Shipment not found. Please check your details." });
+        setErrors({
+          tracking_id: true,
+          phone_number:
+            error?.response?.data?.message ||
+            "Shipment not found. Please check your details.",
+        });
       } else {
-        setErrors({ tracking_id: true, phone_number: error?.response?.data?.message || "An unexpected error occurred. Please try again." });
+        setErrors({
+          tracking_id: true,
+          phone_number:
+            error?.response?.data?.message ||
+            "An unexpected error occurred. Please try again.",
+        });
       }
     } finally {
       setLoading(false);
@@ -68,7 +79,6 @@ const ScratchWinModal = ({
   };
 
   const handleClaim = async (e) => {
-
     //once the user clicks on claim button, we will call the claim API to claim the reward and close the modal.
     e.preventDefault();
 
@@ -81,17 +91,21 @@ const ScratchWinModal = ({
       });
 
       console.log("Claim scratch gift API response:", response);
-    //   toast.success("Reward claimed! Check your email for details.");
+      //   toast.success("Reward claimed! Check your email for details.");
       onClose();
     } catch (error) {
       console.error("Error claiming scratch gift:", error?.response);
-      setErrors({ phone_number: error?.response?.data?.errors || "Failed to claim reward. Please try again." });
-    //   toast.error("Failed to claim reward. Please try again.");
+      setErrors({
+        phone_number:
+          error?.response?.data?.errors ||
+          "Failed to claim reward. Please try again.",
+      });
+      //   toast.error("Failed to claim reward. Please try again.");
     } finally {
       setLoading(false);
       onClose(); // Close the modal after claiming, regardless of success or failure
     }
-  }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -268,7 +282,8 @@ const ScratchWinModal = ({
                       setFormData({
                         ...formData,
                         tracking_id: e.target.value,
-                      })}
+                      })
+                    }
                     placeholder="Enter your tracking ID"
                     error={errors?.tracking_id}
                   />
@@ -288,11 +303,11 @@ const ScratchWinModal = ({
                       setFormData({
                         ...formData,
                         phone_number: e.target.value,
-                      })}
+                      })
+                    }
                     placeholder="Enter your registered phone number"
                     error={errors.phone_number}
-                    />
-                  
+                  />
                 </div>
               </div>
 
@@ -332,31 +347,52 @@ const ScratchWinModal = ({
               {/* Scratch Card */}
               <div
                 className="relative overflow-hidden rounded-xl
-        border-2 border-dashed border-yellow-400
-        bg-linear-to-br from-yellow-50 to-orange-50"
+                border-2 border-dashed border-yellow-400
+                bg-linear-to-br from-yellow-50 to-orange-50"
               >
-                <div
-                  className="flex h-40 flex-col items-center
-          justify-center gap-2 sm:h-48"
-                >
-                  <span
-                    className="text-xs font-semibold
+                {/* if no_gift is true, then show better luck next time message.*/}
+                {scratchData?.no_gift ? (
+                  <div className="flex h-40 flex-col items-center justify-center gap-2 sm:h-48">
+                    <span className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+                      Sorry, no reward this time
+                    </span>
+
+                    <h3 className="text-4xl font-black text-center text-[#1e2a6e] sm:text-5xl">
+                      Better luck next time!
+                    </h3>
+
+                    <p className="text-sm font-medium text-gray-600">
+                      Keep shipping with us for more chances to win.
+                    </p>
+                  </div>
+                ) : 
+                
+                (
+                    <>
+                    {/* if no_gift is false, then show the scratch card with gift message. */}
+                  <div
+                    className="flex h-40 flex-col items-center
+            justify-center gap-2 sm:h-48"
+                  >
+                    <span
+                      className="text-xs font-semibold
             uppercase tracking-widest text-gray-500"
-                  >
-                    Your exclusive reward
-                  </span>
+                    >
+                      Your exclusive reward
+                    </span>
 
-                  <h3
-                    className="text-4xl font-black text-[#1e2a6e]
+                    <h3
+                      className="text-4xl font-black text-[#1e2a6e]
             sm:text-5xl"
-                  >
-                    {scratchData?.gift || "Better luck next time!"}
-                  </h3>
+                    >
+                      {scratchData?.gift || "Better luck next time!"}
+                    </h3>
 
-                  <p className="text-sm font-medium text-gray-600">
-                    On your next shipment
-                  </p>
-                </div>
+                    <p className="text-sm font-medium text-gray-600">
+                      On your next shipment
+                    </p>
+                  </div>
+                
 
                 {!revealed && (
                   <canvas
@@ -372,10 +408,10 @@ const ScratchWinModal = ({
                     }}
                     onPointerUp={checkScratch}
                     onPointerCancel={checkScratch}
-                    className="absolute inset-0 h-full w-full
-              cursor-crosshair touch-none"
+                    className="absolute inset-0 h-full w-full cursor-crosshair touch-none"
                   />
-                )}
+                )} 
+                </>)}
               </div>
 
               {/* Reward Result */}
@@ -407,18 +443,34 @@ const ScratchWinModal = ({
                   />
                 </div>
               ) : (
-                <div className="mt-5 text-center">
-                  <div
-                    className="inline-flex items-center gap-2
-            rounded-full bg-yellow-50 px-4 py-2
-            text-xs font-semibold text-yellow-700"
-                  >
-                    ✨ Scratch at least 40% to reveal
+                <>
+                {scratchData?.no_gift ? (
+                  <div className="mt-5 text-center">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="lg"
+                      label="Close"
+                      className="w-full"
+                      onClick={onClose}
+                    />
                   </div>
-                </div>
+                ) : (
+                  <div className="mt-5 text-center">
+                    <div
+                      className="inline-flex items-center gap-2
+                    rounded-full bg-yellow-50 px-4 py-2
+                    text-xs font-semibold text-yellow-700"
+                    >
+                      ✨ Scratch at least 40% to reveal
+                    </div>
+                  </div>
+                )}
+                </>
               )}
             </>
           )}
+                
 
           <p
             className="mt-5 text-center text-[11px]

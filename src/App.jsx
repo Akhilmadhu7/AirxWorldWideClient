@@ -10,17 +10,17 @@ function App() {
 
   useEffect(() => {
     // Show popup only once per browser session
-    // const alreadyShown = sessionStorage.getItem("scratchPopupShown");
+    const alreadyShown = sessionStorage.getItem("scratchPopupShown");
 
-    // if (!alreadyShown) {
-    //   const timer = setTimeout(() => {
-    //     setShowScratch(true);
-    //     sessionStorage.setItem("scratchPopupShown", "true");
-    //   }, 2500);
+    if (!alreadyShown) {
+      const timer = setTimeout(() => {
+        setShowScratch(true);
+        sessionStorage.setItem("scratchPopupShown", "true");
+      }, 2500);
 
-    //   return () => clearTimeout(timer);
-    // }
-    setShowScratch(true); // For testing purposes, show the popup every time
+      return () => clearTimeout(timer);
+    }
+    // setShowScratch(true); // For testing purposes, show the popup every time
   }, []);
 
   return (
@@ -50,9 +50,6 @@ function App() {
       <ScratchWinModal
         open={showScratch}
         onClose={() => setShowScratch(false)}
-        // onClaim={() => {
-        //   console.log("Reward claimed");
-        // }}
       />
 
       <Routes>
