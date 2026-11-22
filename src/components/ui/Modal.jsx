@@ -36,7 +36,7 @@ const Modal = ({ isOpen, onClose, title, subtitle, children }) => {
         </div>
 
         {/* Orange accent line */}
-        <div className="h-0.5 bg-gradient-to-r from-[#1e2a6e] to-[#f5a623] shrink-0" />
+        <div className="h-0.5 bg-linear-to-r from-[#1e2a6e] to-[#f5a623] shrink-0" />
 
         {/* Scrollable children */}
         <div className="overflow-y-auto flex-1 p-6 space-y-4">

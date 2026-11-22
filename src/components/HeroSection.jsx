@@ -47,7 +47,7 @@ const HeroSection = () => {
   return (
     // pb-16 makes room for the overlapping card below
     // <section className="relative w-full h-[85vh] min-h-[500px] overflow-visible pb-16">
-    <section className="relative w-full h-[60vh] lg:h-[85vh] min-h-[400px] overflow-visible pb-16">
+    <section className="relative w-full h-[60vh] lg:h-[85vh] min-h-100 overflow-visible pb-16">
 
       {/* Background Image */}
       <div
@@ -58,7 +58,7 @@ const HeroSection = () => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">

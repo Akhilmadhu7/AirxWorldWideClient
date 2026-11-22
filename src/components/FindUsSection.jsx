@@ -47,7 +47,7 @@ const FindUsSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-5">
 
             {/* Left — Map */}
-            <div className="lg:col-span-3 h-72 sm:h-96 lg:h-full min-h-[400px]">
+            <div className="lg:col-span-3 h-72 sm:h-96 lg:h-full min-h-100">
               <iframe
                 key={activeId}
                 src={active.mapUrl}
